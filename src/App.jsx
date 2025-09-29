@@ -1,71 +1,114 @@
-import React, { useState } from 'react';
-import './index.css';
-import KsoFooter from './components/KsoFooter';
-import WelcomeScreen from './components/WelcomeScreen';
-import LoyaltyInputScreen from './components/LoyaltyInputScreen';
+import React, { useState } from "react";
+import "./index.css";
+import KsoFooter from "./components/KsoFooter";
+import WelcomeScreen from "./components/WelcomeScreen";
+import LoyaltyInputScreen from "./components/LoyaltyInputScreen";
+import ScanningScreen from "./components/ScanningScreen";
+import PaymentSelectionScreen from "./components/PaymentSelectionScreen";
+import CardTerminalScreen from "./components/CardTerminalScreen";
+import FinishScreen from "./components/FinishScreen";
 
 // Визначаємо можливі стани екрана
 const SCREEN_STATES = {
-    WELCOME: 'WELCOME',
-    LOYALTY_INPUT: 'LOYALTY_INPUT',
-    SCANNING_ITEMS: 'SCANNING_ITEMS',
-    PAYMENT_SELECTION: 'PAYMENT_SELECTION',
-    PAYMENT_TERMINAL: 'PAYMENT_TERMINAL',
-    FINISH: 'FINISH',
+	WELCOME: "WELCOME",
+	LOYALTY_INPUT: "LOYALTY_INPUT",
+	SCANNING_ITEMS: "SCANNING_ITEMS",
+	PAYMENT_SELECTION: "PAYMENT_SELECTION",
+	PAYMENT_TERMINAL: "PAYMENT_TERMINAL",
+	FINISH: "FINISH",
 };
 
 function App() {
-  const [screenState, setScreenState] = useState(SCREEN_STATES.WELCOME);
-  const [loyaltyNumber, setLoyaltyNumber] = useState(null); // Стан для зберігання номера лояльності
+	const [screenState, setScreenState] = useState(SCREEN_STATES.WELCOME);
+	const [loyaltyNumber, setLoyaltyNumber] = useState(null);
 
-  const changeScreen = (newState) => {
-    setScreenState(newState);
-  };
+	const changeScreen = (newState) => {
+		setScreenState(newState);
+	};
 
-  // 2. Логіка для переходу з екрана лояльності
-  const handleLoyaltyProceed = (number) => {
-    // В реальному проєкті тут буде виклик API для перевірки номера
-    setLoyaltyNumber(number);
-    changeScreen(SCREEN_STATES.SCANNING_ITEMS);
-    console.log(`Номер лояльності введено: ${number}`);
-  };
+  const handleRestart = () => {
+      setLoyaltyNumber(null);
+      changeScreen(SCREEN_STATES.WELCOME);
+  }
 
-  const handleLoyaltySkip = () => {
-    setLoyaltyNumber(null); // Скидаємо номер
-    changeScreen(SCREEN_STATES.SCANNING_ITEMS);
-    console.log("Пропущено введення номера лояльності");
-  };
+	// 2. Логіка для переходу з екрана лояльності
+	const handleLoyaltyProceed = (number) => {
+		// В реальному проєкті тут буде виклик API для перевірки номера
+		setLoyaltyNumber(number);
+		changeScreen(SCREEN_STATES.SCANNING_ITEMS);
+		console.log(`Номер лояльності введено: ${number}`);
+	};
 
+	const handleLoyaltySkip = () => {
+		setLoyaltyNumber(null); // Скидаємо номер
+		changeScreen(SCREEN_STATES.SCANNING_ITEMS);
+		console.log("Пропущено введення номера лояльності");
+	};
 
-  const renderScreenContent = () => {
-    switch (screenState) {
-      case SCREEN_STATES.WELCOME:
-        // Перехід на екран введення телефону
-        return <WelcomeScreen onStart={() => changeScreen(SCREEN_STATES.LOYALTY_INPUT)} />; 
-      
-      case SCREEN_STATES.LOYALTY_INPUT:
-        // Рендер компонента введення, передаємо обробники
-        return (
-            <LoyaltyInputScreen 
-                onSkip={handleLoyaltySkip}
-                onProceed={handleLoyaltyProceed}
-            />
-        );
-        
-      case SCREEN_STATES.SCANNING_ITEMS:
-        return <h1>Екран сканування (Номер лояльності: {loyaltyNumber || 'Ні'})</h1>;
-        
-      default:
-        return <h1>Екран ({screenState})</h1>;
-    }
-  };
+	const renderScreenContent = () => {
+		switch (screenState) {
+			case SCREEN_STATES.WELCOME:
+				return (
+					<WelcomeScreen
+						onStart={() =>
+							changeScreen(SCREEN_STATES.LOYALTY_INPUT)
+						}
+					/>
+				);
 
-  return (
-    <div className="kso-screen">
-        {renderScreenContent()}
-        <KsoFooter screenName={screenState} />
-    </div>
-  );
+			case SCREEN_STATES.LOYALTY_INPUT:
+				// ...
+				return (
+					<LoyaltyInputScreen
+						onSkip={handleLoyaltySkip}
+						onProceed={handleLoyaltyProceed}
+					/>
+				);
+
+			case SCREEN_STATES.SCANNING_ITEMS:
+				return (
+					<ScanningScreen
+						onFinishScanning={() =>
+							changeScreen(SCREEN_STATES.PAYMENT_SELECTION)
+						}
+					/>
+				);
+
+			case SCREEN_STATES.PAYMENT_SELECTION:
+				return (
+					<PaymentSelectionScreen
+						onGoToTerminal={() =>
+							changeScreen(SCREEN_STATES.PAYMENT_TERMINAL)
+						}
+						onCancel={() =>
+							changeScreen(SCREEN_STATES.SCANNING_ITEMS)
+						}
+					/>
+				);
+
+			case SCREEN_STATES.PAYMENT_TERMINAL:
+				return (
+					<CardTerminalScreen
+						onPaymentComplete={() =>
+							changeScreen(SCREEN_STATES.FINISH)
+						}
+					/>
+				);
+
+			case SCREEN_STATES.FINISH:
+				return <FinishScreen onRestart={handleRestart} />;
+
+			default:
+				return <h1>Екран ({screenState})</h1>;
+		}
+	};
+
+	return (
+		<div className="kso-screen">
+			{renderScreenContent()}
+			<KsoFooter screenName={screenState} />
+		</div>
+	);
 }
 
 export default App;

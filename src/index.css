@@ -366,3 +366,414 @@ body {
 .proceed-button.active:hover {
 	background-color: #4a932a;
 }
+
+/* --- СТИЛІ SCANNING SCREEN --- */
+
+.scanning-screen {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 20px;
+	padding-bottom: 0; /* Футер сам дасть відступ */
+}
+
+/* --- Заголовок та інструкція --- */
+.scan-header {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.check-title {
+	font-size: 20px;
+	font-weight: 700;
+	margin-bottom: 5px;
+}
+
+.item-count {
+	font-weight: 400;
+	color: var(--color-text-light);
+}
+
+.scan-instruction {
+	font-size: 16px;
+	color: var(--color-primary);
+	font-weight: 500;
+	padding: 5px;
+	background-color: #e6ffe6;
+	border-radius: 4px;
+}
+
+/* --- Список товарів --- */
+.items-list-container {
+	flex-grow: 1;
+	overflow-y: auto; /* Дозволяє прокручувати список товарів */
+	padding-right: 10px;
+	margin-bottom: 15px;
+}
+
+.empty-check-message {
+	text-align: center;
+	padding: 40px 0;
+	color: var(--color-text-light);
+	font-style: italic;
+}
+
+.check-item-row {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr; /* Назва | Контроль | Ціна */
+	padding: 10px 0;
+	border-bottom: 1px solid #eee;
+	align-items: center;
+}
+
+.item-name {
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--color-text-dark);
+}
+
+.item-controls {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+}
+
+.quantity-btn {
+	background: #f0f0f0;
+	border: 1px solid #ccc;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	font-weight: 700;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: background 0.1s;
+}
+
+.quantity-btn:active {
+	background: #ccc;
+}
+
+.item-quantity {
+	font-weight: 500;
+	min-width: 20px;
+	text-align: center;
+}
+
+.item-price {
+	font-size: 16px;
+	font-weight: 700;
+	text-align: right;
+	color: var(--color-text-dark);
+}
+
+/* --- Підсумковий блок --- */
+.summary-block {
+	padding-top: 10px;
+	border-top: 2px solid #333; /* Жирна лінія */
+	margin-bottom: 15px;
+}
+
+.summary-row {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+
+.summary-row.total {
+	font-size: 24px;
+	font-weight: 700;
+	color: var(--color-secondary);
+	margin-top: 10px;
+}
+
+.summary-row.discount .summary-value {
+	color: var(--color-primary);
+}
+
+/* --- Контроль та оплата --- */
+.scan-controls {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.mock-scanner-input {
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	width: 100%;
+}
+
+.mock-scanner-button {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: 500;
+	transition: background-color 0.2s;
+}
+
+.payment-button {
+	background-color: var(--color-primary);
+	color: white;
+	font-size: 24px;
+	font-weight: 700;
+	padding: 15px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: background-color 0.2s;
+}
+
+.payment-button:disabled {
+	background-color: #cccccc;
+	color: #999999;
+	cursor: not-allowed;
+	box-shadow: none;
+}
+
+/* --- СТИЛІ PAYMENT SELECTION SCREEN --- */
+
+.payment-selection-screen {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.payment-header {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.payment-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.final-total {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--color-secondary);
+}
+
+.total-label {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-text-light);
+    margin-right: 10px;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+    max-width: 300px;
+    margin-bottom: auto; /* Притискає донизу */
+}
+
+.payment-option {
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.payment-option:not(.disabled):hover {
+    border-color: var(--color-primary);
+    background-color: #e6ffe6;
+}
+
+.payment-option.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.payment-option .icon {
+    font-size: 30px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.payment-option .label {
+    font-size: 20px;
+    font-weight: 700;
+    display: block;
+}
+
+.payment-option .info {
+    font-size: 14px;
+    color: var(--color-text-light);
+    display: block;
+}
+
+.back-button {
+    background: none;
+    border: 1px solid #ccc;
+    color: var(--color-text-light);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+
+/* --- СТИЛІ CARD TERMINAL SCREEN --- */
+
+.card-terminal-screen {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+.terminal-display {
+    padding: 30px;
+    background-color: #333;
+    color: white;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 300px;
+}
+
+.terminal-display .icon {
+    font-size: 50px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.terminal-message {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.terminal-amount {
+    font-size: 18px;
+    font-weight: 400;
+    color: #ccc;
+}
+
+.terminal-mock {
+    margin-top: 30px;
+    width: 80%;
+    max-width: 300px;
+}
+
+.card-slot {
+    height: 10px;
+    background-color: #999;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.led-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.led {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #333; /* Неактивний */
+    border: 1px solid #222;
+}
+
+.card-terminal-screen.waiting-card .led:nth-child(1) {
+    background-color: yellow;
+    box-shadow: 0 0 5px yellow;
+}
+.card-terminal-screen.processing .led:nth-child(2) {
+    background-color: orange;
+    box-shadow: 0 0 5px orange;
+}
+.card-terminal-screen.success .led:nth-child(3) {
+    background-color: var(--color-primary);
+    box-shadow: 0 0 5px var(--color-primary);
+}
+
+/* --- СТИЛІ FINISH SCREEN --- */
+
+.finish-screen {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.finish-title {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.finish-message {
+    font-size: 20px;
+    color: var(--color-text-dark);
+    margin-bottom: 20px;
+}
+
+.finish-icon {
+    font-size: 60px;
+    margin-bottom: 30px;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    to {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+.finish-instruction {
+    font-size: 14px;
+    color: var(--color-text-light);
+    margin-bottom: 20px;
+}
+
+.finish-restart-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.finish-restart-button:hover {
+    background-color: #0056b3;
+}

@@ -74,7 +74,7 @@ const LoyaltyInputScreen = ({ onSkip, onProceed }) => {
         onClick={isProceedActive ? () => onProceed(phoneNumber) : null}
         disabled={!isProceedActive}
       >
-        Продовжити
+        {t('loyalty_continue')}
       </button>
 
     </div>
