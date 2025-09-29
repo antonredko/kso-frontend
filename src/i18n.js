@@ -9,9 +9,6 @@ const resources = {
 			app_name: "ОЛАА!",
 			greeting: "Доброго дня,", // <-- Використовується в <h2>
 			slogan: "Завжди вигідно!", // <-- Використовується в <p>
-			info_1: "ласкаво просимо до нашого магазину.",
-			info_2: "Доступна оплата лише",
-			info_3: "картою та система лояльності ЛОЯ",
 			start_button: "Почати покупки", // <-- Використовується в кнопці
 			info_payment:
 				"ласкаво просимо до нашого магазину.\nДоступна оплата лише\nкартою та система лояльності ЛОЯ",
@@ -35,6 +32,7 @@ const resources = {
 			app_name: "OLAA!",
 			slogan: "Always profitable!",
 			greeting: "Good day,",
+			start_button: "Start shopping",
 			info_payment:
 				"welcome to our store.\nOnly card payment and LOYA loyalty system are available",
 			start_purchase: "Start shopping",

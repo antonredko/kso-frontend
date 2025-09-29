@@ -28,9 +28,7 @@ const WelcomeScreen = ({ onStart }) => {
         {/* 4. Інформаційний блок про оплату */}
         <div className="info-block">
           <p>
-            {t('info_1')}<br/>
-            {t('info_2')}<br/>
-            {t('info_3')}
+            {t('info_payment')}
           </p>
         </div>
 
