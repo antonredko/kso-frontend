@@ -2,7 +2,7 @@ import React, { createContext, useReducer, useContext } from 'react';
 
 // Початковий стан чека
 const initialState = {
-  items: [{ id: 1, name: 'Молоко', price: 35.50, quantity: 1, total: 35.50 }], // [{ id: 1, name: 'Молоко', price: 35.50, quantity: 1, total: 35.50 }]
+  items: [], // [{ id: 1, name: 'Молоко', price: 35.50, quantity: 1, total: 35.50 }]
   subtotal: 0,
   discount: 0,
   total: 0,
