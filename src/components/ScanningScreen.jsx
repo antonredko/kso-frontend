@@ -8,7 +8,7 @@ const MOCK_PRODUCTS = [
   { id: 101, name: 'Молоко 3.2% 900 мл', price: 35.50 },
   { id: 102, name: 'Батон нарізний', price: 18.00 },
   { id: 103, name: 'Яблука Голден (кг)', price: 45.90 },
-  { id: 104, name: 'Вода 1.5л негазована', price: 15.00 },
+  { id: 104, name: 'Вода 1.5л негазована', price: 15.00, discount: 5 },
 ];
 
 const ScanningScreen = ({ onFinishScanning }) => {
