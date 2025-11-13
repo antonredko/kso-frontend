@@ -36,8 +36,8 @@ body {
 /* --- КОНТЕЙНЕР ЕКРАНА КСО (App.jsx) --- */
 
 .kso-screen {
-	/* width: var(--screen-width); */
-	/* min-height: var(--screen-height); */
+	width: var(--screen-width);
+	min-height: var(--screen-height);
 	background-color: var(--color-background);
 	box-shadow: 0 0 25px rgba(0, 0, 0, 0.3); /* Тінь для імітації монітора */
 	border-radius: 5px;
