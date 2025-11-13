@@ -5,7 +5,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 const resources = {
 	uk: {
 		translation: {
-			app_name: "ОЛАА!",
+			app_name: "ОЛДІ",
 			greeting: "Доброго дня,",
 			slogan: "Завжди вигідно!",
 			start_button: "Почати покупки",
@@ -60,7 +60,7 @@ const resources = {
 	},
 	en: {
 		translation: {
-			app_name: "OLAA!",
+			app_name: "ОЛДІ",
 			slogan: "Always profitable!",
 			greeting: "Good day,",
 			start_button: "Start shopping",

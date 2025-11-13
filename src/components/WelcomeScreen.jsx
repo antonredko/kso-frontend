@@ -14,7 +14,7 @@ const WelcomeScreen = ({ onStart }) => {
 			<div className="kso-main-area">
 				{/* 2. Логотип ОЛАА! */}
 				<div className="logo-container">
-					<h1 className="logo-text">ОЛАА!</h1>
+					<h1 className="logo-text">ОЛДІ</h1>
 				</div>
 
 				{/* 3. Вітальне повідомлення та слоган (використовуємо локалізацію t()) */}
